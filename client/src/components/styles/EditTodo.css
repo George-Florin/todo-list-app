@@ -1,0 +1,19 @@
+.edit-form {
+  border: 2px solid black;
+  border-radius: 4px;
+  background-color: #444444;
+  text-align: center;
+  min-height: 5rem;
+  padding: 20px;
+  color: white;
+  margin: 10px;
+}
+
+input,
+textarea {
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 10px;
+  height: 2rem;
+  width: 20rem;
+}
