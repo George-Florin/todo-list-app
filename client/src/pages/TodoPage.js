@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_TODO } from "../queries/todoQueries";
+import { MdUpdate } from "react-icons/md";
 import "../components/styles/TodoPage.css";
-import EditTodo from "../components/EditTodo";
 
 const TodoPage = () => {
   const { id } = useParams();
@@ -13,6 +13,10 @@ const TodoPage = () => {
 
   return (
     <>
+      <Link to="/update-todo">
+        <MdUpdate size={18} />
+        Update
+      </Link>
       {!loading && !error && (
         <div className="todo-page">
           <Link to="/">Back</Link>
@@ -20,7 +24,6 @@ const TodoPage = () => {
           <p>{data.todo.description}</p>
         </div>
       )}
-      <EditTodo todo={data.todo} />
     </>
   );
 };

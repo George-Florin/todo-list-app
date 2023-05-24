@@ -18,7 +18,7 @@ const Todos = () => {
           ))}
         </div>
       ) : (
-        <p>Nothing here</p>
+        <h2 style={{ textAlign: "center", color: "white" }}>Nothing here</h2>
       )}
     </>
   );

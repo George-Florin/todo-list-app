@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_TODO } from "../mutations/todoMutations";
 import { GET_TODOS } from "../queries/todoQueries";
+import Modal from "./Modal";
 import "./styles/AddTodo.css";
 
 const AddTodo = () => {
@@ -19,7 +20,7 @@ const AddTodo = () => {
     },
   });
 
-  const { loading, error, data } = useQuery(GET_TODOS);
+  const { loading, error } = useQuery(GET_TODOS);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -39,33 +40,35 @@ const AddTodo = () => {
 
   return (
     <>
-      {!loading && !error && (
-        <div className="form-container">
-          <form className="form" onSubmit={onSubmit}>
-            <label>Title</label>
-            <br />
-            <input
-              type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <br />
-            <label>Description</label>
-            <br />
-            <textarea
-              type="text"
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-            <br />
-            <div className="submit-btn-container">
-              <button type="submit">Submit</button>
-            </div>
-          </form>
-        </div>
-      )}
+      <Modal>
+        {!loading && !error && (
+          <div className="form-container">
+            <form className="form" onSubmit={onSubmit}>
+              <label>Title</label>
+              <br />
+              <input
+                type="text"
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <br />
+              <label>Description</label>
+              <br />
+              <textarea
+                type="text"
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+              <br />
+              <div className="submit-btn-container">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        )}
+      </Modal>
     </>
   );
 };

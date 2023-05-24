@@ -1,13 +1,14 @@
 import Todos from "../components/Todos";
-import AddTodo from "../components/AddTodo";
-import "../components/styles/Homepage.css";
+import { Link } from "react-router-dom";
+import { MdPostAdd } from "react-icons/md";
 
 const Homepage = () => {
   return (
     <>
-      <div>
-        <AddTodo />
-      </div>
+      <Link to="/add-todo">
+        <MdPostAdd size={18} />
+        New Post
+      </Link>
       <Todos />
     </>
   );

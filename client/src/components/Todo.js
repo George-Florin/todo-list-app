@@ -1,5 +1,6 @@
 import "./styles/Todo.css";
 import DeleteButton from "./DeleteButton";
+import { Link } from "react-router-dom";
 
 const Todo = ({ todo }) => {
   return (
@@ -10,7 +11,7 @@ const Todo = ({ todo }) => {
           <h3>{todo.description}</h3>
         </div>
         <div className="todo-btn-container">
-          <a href={`/todos/${todo.id}`}>View</a>
+          <Link to="/update-todo">Update</Link>
           <DeleteButton todoId={todo.id} />
         </div>
       </div>
@@ -19,3 +20,8 @@ const Todo = ({ todo }) => {
 };
 
 export default Todo;
+
+/*<Link to="/update-todo">
+  <MdUpdate size={18} />
+  Update
+</Link>;*/
