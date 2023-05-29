@@ -6,6 +6,7 @@ const GET_TODOS = gql`
       id
       title
       description
+      date
     }
   }
 `;
@@ -16,6 +17,7 @@ const GET_TODO = gql`
       id
       title
       description
+      date
     }
   }
 `;

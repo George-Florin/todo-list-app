@@ -7,6 +7,9 @@ const TodoSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  date: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Todo", TodoSchema);

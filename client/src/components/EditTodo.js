@@ -8,20 +8,21 @@ import Modal from "./Modal";
 const EditTodo = ({ todo }) => {
   const [title, setTitle] = useState(todo.title);
   const [description, setDescription] = useState(todo.description);
+  const [date, setDate] = useState(todo.date);
 
   const [updateTodo] = useMutation(UPDATE_TODO, {
-    variables: { id: todo.id, title, description },
+    variables: { id: todo.id, title, description, date },
     refetchQueries: [{ query: GET_TODO, variables: { id: todo.id } }],
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!title || !description) {
+    if (!title || !description || !date) {
       return alert("Please fill in all the fields");
     }
 
-    updateTodo(title, description);
+    updateTodo(title, description, date);
   };
 
   return (
@@ -29,6 +30,15 @@ const EditTodo = ({ todo }) => {
       <div className="edit-form">
         <h3>Update details</h3>
         <form onSubmit={onSubmit}>
+          <label>Date</label>
+          <br />
+          <input
+            type="date"
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <br />
           <label>Title</label>
           <br />
           <input

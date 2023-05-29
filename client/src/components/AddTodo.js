@@ -8,9 +8,10 @@ import "./styles/AddTodo.css";
 const AddTodo = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
 
   const [addTodo] = useMutation(ADD_TODO, {
-    variables: { title, description },
+    variables: { title, description, date },
     update(cache, { data: { addTodo } }) {
       const { todos } = cache.readQuery({ query: GET_TODOS });
       cache.writeQuery({
@@ -25,14 +26,15 @@ const AddTodo = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (title === "" || description === "") {
+    if (title === "" || description === "" || date === "") {
       return alert("Please fill in all the fields");
     }
 
-    addTodo(title, description);
+    addTodo(title, description, date);
 
     setTitle("");
     setDescription("");
+    setDate("");
   };
 
   if (loading) return null;
@@ -44,6 +46,16 @@ const AddTodo = () => {
         {!loading && !error && (
           <div className="form-container">
             <form className="form" onSubmit={onSubmit}>
+              <label>Date</label>
+              <br />
+              <input
+                type="date"
+                format="DD-MM-YYYY"
+                id="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+              <br />
               <label>Title</label>
               <br />
               <input

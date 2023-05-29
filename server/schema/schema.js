@@ -17,6 +17,7 @@ const TodoType = new GraphQLObjectType({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
     description: { type: GraphQLString },
+    date: { type: GraphQLString },
     progress: { type: GraphQLBoolean },
   }),
 });
@@ -50,11 +51,13 @@ const mutation = new GraphQLObjectType({
       args: {
         title: { type: GraphQLNonNull(GraphQLString) },
         description: { type: GraphQLNonNull(GraphQLString) },
+        date: { type: GraphQLNonNull(GraphQLString) },
       },
       resolve(parent, args) {
         const todo = new Todo({
           title: args.title,
           description: args.description,
+          date: args.date,
         });
 
         return todo.save();
@@ -77,6 +80,7 @@ const mutation = new GraphQLObjectType({
         id: { type: GraphQLNonNull(GraphQLID) },
         title: { type: GraphQLString },
         description: { type: GraphQLString },
+        date: { type: GraphQLString },
       },
       resolve(parent, args) {
         return Todo.findByIdAndUpdate(
@@ -85,6 +89,7 @@ const mutation = new GraphQLObjectType({
             $set: {
               title: args.title,
               description: args.description,
+              date: args.date,
             },
           },
           { new: true }

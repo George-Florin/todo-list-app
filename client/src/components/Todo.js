@@ -7,6 +7,7 @@ const Todo = ({ todo }) => {
     <>
       <div className="todo">
         <div className="todo-text">
+          <h3>{todo.date}</h3>
           <h2>{todo.title}</h2>
           <h3>{todo.description}</h3>
         </div>
